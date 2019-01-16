@@ -172,3 +172,36 @@ export class Timer extends Component {
     }
 }
 
+export class Dropdown extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {value: ''};
+        this.handleOnChange = this.handleOnChange.bind(this);
+    }
+
+    handleOnChange(event) {
+        this.setState({value: event.target.value});
+    }
+
+    render() {
+        var optionList = this.props.options.map((entry, index) => {
+            return <option value={entry} key={index}>{entry}</option>
+        });
+
+        return(
+            <b>{this.props.title}<br/>
+                <select value={this.state.value} onChange={this.handleOnChange}>
+                    {optionList}
+                </select>
+            </b>
+        );
+    }
+}
+
+export class ErrorField extends Component {
+    render() {
+        
+        return (<b>Error: {this.props.name} is not recognized</b>);
+    }
+}
+

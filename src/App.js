@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Sidebar from "react-sidebar";
-import * as form from "./FormComponents.js"
 import {MenuSideBar} from "./MenuSideBar.js"
 
 class App extends Component {
