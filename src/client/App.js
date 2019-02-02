@@ -8,10 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sidebarOpen: true,
-      response: "",
-      post: "",
-      responseToPost: ""
+      sidebarOpen: true
     };
     this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
     this.onCallApi = this.onCallApi.bind(this);
@@ -27,15 +24,6 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-
-
-  callApi = async () => {
-    const response = await fetch('/hello');
-    const body = await response.json();
-    if (response.status !== 200) throw Error(body.message);
-    return body;
-  };
-
   render() {
     return (
       <div className="App">
@@ -48,10 +36,6 @@ class App extends Component {
         <button onClick={() => this.onSetSidebarOpen(true)}>
           Open Sidebar
         </button>
-        <button onClick={() => this.onCallApi()}>
-          Call Api
-        </button>
-        <b style={{color:"white"}}>{this.state.response}</b>
       </Sidebar>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
