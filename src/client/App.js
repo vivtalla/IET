@@ -11,10 +11,17 @@ class App extends Component {
       sidebarOpen: true
     };
     this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
+    this.onCallApi = this.onCallApi.bind(this);
   }
 
   onSetSidebarOpen(open) {
     this.setState({sidebarOpen: open});
+  }
+
+  onCallApi() {
+    this.callApi()
+      .then(res => this.setState({ response: res.express }))
+      .catch(err => console.log(err));
   }
 
   render() {
