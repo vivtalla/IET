@@ -20,10 +20,9 @@ export class Goal extends Component {
     render() {
         var fieldList = this.props.dataFields.map((entry, index) => {
             const FormComponent = keymap[entry.TaskType] || keymap.default;
-            return <FormComponent name={entry.TaskName}
+            return <div key={index}><FormComponent name={entry.TaskName}
                 title={entry.TaskName}
-                options={entry.TaskOptions}
-                key={index}/>
+                options={entry.TaskOptions}/><br/></div>
         });
         return(
             <ul>{fieldList}</ul>
