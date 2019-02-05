@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import {Goal} from "./Goal.js";
+import {NavItem} from "./NavComponents.js";
+import SimpleList from "./SimpleList.js";
+//import {SimpleList} from "./SimpleList.js";
 import api from "./api.js";
+
+
 
 export class MenuSideBar extends Component {
     constructor(props) {
@@ -20,14 +25,7 @@ export class MenuSideBar extends Component {
     render() {
         return(
             <div>
-                <b>Sidebar Cotents</b>
-                <br></br>
-                <i>Need to add stuff here</i>
-                <br/>
-                <button onClick={() => {this.getFormData(12345)}}>
-                Get Form data
-                </button><br/>
-                <Goal dataFields={this.state.data}/>
+                <SimpleList />
             </div>
         );
     }

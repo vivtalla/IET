@@ -4,6 +4,13 @@ import Sidebar from "react-sidebar";
 import {MenuSideBar} from "./MenuSideBar.js";
 import {UseForm} from "./UseForm.js";
 
+const sideBarButtonStyle = {
+  height: '40px',
+  width:  '40px',
+  float:  'left',
+  border: '5px solid black'
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -16,6 +23,7 @@ class App extends Component {
 
   onSetSidebarOpen(open) {
     this.setState({sidebarOpen: open});
+    //TODO  Might want to disabled the hamburger button here
   }
 
   onCallApi() {
@@ -33,8 +41,11 @@ class App extends Component {
         onSetOpen={this.onSetSidebarOpen}
         styles={{ sidebar: { background: "white", width: "300px" } }}
       >
-        <button onClick={() => this.onSetSidebarOpen(true)}>
-          Open Sidebar
+        <button
+          onClick={() => this.onSetSidebarOpen(true)}
+          style={sideBarButtonStyle}
+        >
+          =
         </button>
         <UseForm/>
       </Sidebar>
