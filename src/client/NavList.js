@@ -10,6 +10,15 @@ import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import ForumIcon from '@material-ui/icons/Forum';
 
+import SettingsIcon from '@material-ui/icons/Settings';
+import FormCreationIcon from '@material-ui/icons/Note';
+import ViewFormIcon from '@material-ui/icons/Search';
+import ManageAccessIcon from '@material-ui/icons/People';
+import ProfileIcon from '@material-ui/icons/Portrait';
+///////
+import MagicButtonIcon from '@material-ui/icons/ThumbUp';
+///////
+
 const styles = theme => ({
   root: {
     width: '100%',
@@ -22,20 +31,20 @@ function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;
 }
 
-function SimpleList(props) {
+function NavList(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
       <List component="nav">
         <ListItem button>
           <ListItemIcon>
-            <ForumIcon />
+            <FormCreationIcon />
           </ListItemIcon>
           <ListItemText primary="Create Form" />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
-            <DraftsIcon />
+            <ViewFormIcon />
           </ListItemIcon>
           <ListItemText primary="View Form" />
         </ListItem>
@@ -43,12 +52,30 @@ function SimpleList(props) {
       <Divider />
       <List component="nav">
         <ListItem button>
+          <ListItemIcon>
+            <SettingsIcon />
+          </ListItemIcon>
           <ListItemText primary="Settings" />
         </ListItem>
         <ListItem button>
+          <ListItemIcon>
+            <ProfileIcon />
+          </ListItemIcon>
           <ListItemText primary="Profile" />
         </ListItem>
+        <ListItem button>
+        <ListItemIcon>
+          <ManageAccessIcon />
+        </ListItemIcon>
+          <ListItemText primary="Manage Access" />
+        </ListItem>
+      </List>
+      <Divider />
+      <List>
         <ListItemLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+          <ListItemIcon>
+            <MagicButtonIcon />
+            </ListItemIcon>
           <ListItemText primary="Magic Button" />
         </ListItemLink>
       </List>
@@ -56,8 +83,8 @@ function SimpleList(props) {
   );
 }
 
-SimpleList.propTypes = {
+NavList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleList);
+export default withStyles(styles)(NavList);

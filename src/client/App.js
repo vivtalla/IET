@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import Sidebar from "react-sidebar";
+import MenuIcon from '@material-ui/icons/MenuTwoTone';
 import {MenuSideBar} from "./MenuSideBar.js";
 import {UseForm} from "./UseForm.js";
 
 const sideBarButtonStyle = {
-  height: '40px',
-  width:  '40px',
+  height: 'auto',
+  width:  'auto',
   float:  'left',
-  border: '5px solid black'
 };
 
 class App extends Component {
@@ -45,7 +45,7 @@ class App extends Component {
           onClick={() => this.onSetSidebarOpen(true)}
           style={sideBarButtonStyle}
         >
-          =
+          <MenuIcon />
         </button>
         <UseForm/>
       </Sidebar>

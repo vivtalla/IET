@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Goal} from "./Goal.js";
 import {NavItem} from "./NavComponents.js";
-import SimpleList from "./SimpleList.js";
+import NavList from "./NavList.js";
 //import {SimpleList} from "./SimpleList.js";
 import api from "./api.js";
 
@@ -25,7 +25,7 @@ export class MenuSideBar extends Component {
     render() {
         return(
             <div>
-                <SimpleList />
+                <NavList />
             </div>
         );
     }
