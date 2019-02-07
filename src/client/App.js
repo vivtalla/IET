@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Sidebar from "react-sidebar";
 import {MenuSideBar} from "./MenuSideBar.js"
+import Popup from 'reactjs-popup'
 
 class App extends Component {
   constructor(props) {
@@ -23,11 +24,11 @@ class App extends Component {
       .then(res => this.setState({ response: res.express }))
       .catch(err => console.log(err));
   }
-
+  
   render() {
     return (
       <div className="App">
-      <Sidebar
+      {/* <Sidebar
         sidebar={<MenuSideBar/>}
         open={this.state.sidebarOpen}
         onSetOpen={this.onSetSidebarOpen}
@@ -50,7 +51,43 @@ class App extends Component {
           >
             Learn React
           </a>
-        </header>
+        </header> */}
+        <Popup trigger={<button className="button"> Open Modal </button>} modal lockScroll = {true}>
+          {close => (
+            <div className="modal">
+              <a className="close" onClick={close}>
+                &times;
+              </a>
+              <div className="header"> Modal Title </div>
+              <div className="content">
+                {' '}
+                Sample Text
+              </div>
+              <div className="actions">
+                <Popup
+                  trigger={<button className="button"> Trigger </button>}
+                  position="top center"
+                  closeOnDocumentClick
+                >
+                  <div className="menu">
+                    <div className="menu-item"> Menu item 1</div>
+                    <div className="menu-item"> Menu item 2</div>
+                    <div className="menu-item"> Menu item 3</div>
+                    <div className="menu-item"> Menu item 4</div>
+                  </div>
+                </Popup>
+                <button
+                  className="button"
+                  onClick={() => {
+                    close()
+                  }}
+                >
+                  close modal
+                </button>
+              </div>
+            </div>
+          )}
+        </Popup>
       </div>
     );
   }
