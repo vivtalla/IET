@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Sidebar from "react-sidebar";
 import {MenuSideBar} from "./MenuSideBar.js"
 import Popup from 'reactjs-popup'
+import MenuIcon from '@material-ui/icons/MenuTwoTone';
+import {MenuSideBar} from "./MenuSideBar.js";
+import {UseForm} from "./UseForm.js";
+
+const sideBarButtonStyle = {
+  height: 'auto',
+  width:  'auto',
+  float:  'left',
+};
 
 class App extends Component {
   constructor(props) {
@@ -17,6 +25,7 @@ class App extends Component {
 
   onSetSidebarOpen(open) {
     this.setState({sidebarOpen: open});
+    //TODO  Might want to disabled the hamburger button here
   }
 
   onCallApi() {
@@ -34,9 +43,13 @@ class App extends Component {
         onSetOpen={this.onSetSidebarOpen}
         styles={{ sidebar: { background: "white", width: "300px" } }}
       >
-        <button onClick={() => this.onSetSidebarOpen(true)}>
-          Open Sidebar
+        <button
+          onClick={() => this.onSetSidebarOpen(true)}
+          style={sideBarButtonStyle}
+        >
+          <MenuIcon />
         </button>
+        <UseForm/>
       </Sidebar>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
