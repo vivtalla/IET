@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 import Sidebar from "react-sidebar";
 import {MenuSideBar} from "./MenuSideBar.js"
-import Popup from 'reactjs-popup'
 import Settings from "./Settings.js";
 import MenuIcon from '@material-ui/icons/MenuTwoTone';
 import {UseForm} from "./UseForm.js";
-import {EditMenu} from "./FormCreationMenu.js";
+import {FormCreationMenu} from "./FormCreationMenu.js";
 
 const showAlerts = false;
 const system_loggedIn = true;
@@ -79,7 +78,7 @@ class App extends Component {
           <div>
           {this.state.loggedIn == false ? <p>Log In Page Goes Here</p> :
           this.state.page == "settings" ? <Settings /> :
-          this.state.page == "createForm" ? <UseForm /> :
+          this.state.page == "createForm" ? <FormCreationMenu /> :
           this.state.page == "viewForm" ? <p>View Form Page Goes Here</p> :
           this.state.page == "profile" ? <p>Profile Page Goes Here</p> :
           this.state.page == "manageAccess" ? <p>Manage Access Page Goes Here</p> :
@@ -89,19 +88,9 @@ class App extends Component {
         </Sidebar>
         </div>
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header> */}
+
+
+        </header>
       </div>
         
     );
