@@ -30,7 +30,7 @@ class App extends Component {
     super(props);
     this.state = {
       sidebarOpen: true,
-      page: "",
+      page: "welcome",
       loggedIn: system_loggedIn
     };
     this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
@@ -63,12 +63,12 @@ class App extends Component {
       <div className="App">
       <div style = {sideMenuStyle}>
         <Sidebar
-          sidebar={<MenuSideBar onNavItemClicked={this.onNavItemClicked}/>}
+          sidebar={<MenuSideBar showing={this.state.page} onNavItemClicked={this.onNavItemClicked}/>}
           open={this.state.sidebarOpen}
           onSetOpen={this.onSetSidebarOpen}
           styles={{ sidebar: { background: "white", width: "300px" } }}
         >
-          //main page
+          //placeholder main page
           <button
             onClick={() => this.onSetSidebarOpen(true)}
             style={sideBarButtonStyle}
@@ -82,9 +82,9 @@ class App extends Component {
           this.state.page == "viewForm" ? <p>View Form Page Goes Here</p> :
           this.state.page == "profile" ? <p>Profile Page Goes Here</p> :
           this.state.page == "manageAccess" ? <p>Manage Access Page Goes Here</p> :
-          this.state.page == "" ? <p>Welcome Page Goes Here</p> : null}
+          this.state.page == "welcome" ? <p>Welcome Page Goes Here</p> : null}
           </div>
-          //end main page
+          //end placeholder main page
         </Sidebar>
         </div>
         <header className="App-header">
