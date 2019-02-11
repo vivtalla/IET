@@ -4,8 +4,8 @@ import Sidebar from "react-sidebar";
 import {MenuSideBar} from "./MenuSideBar.js"
 import Popup from 'reactjs-popup'
 import MenuIcon from '@material-ui/icons/MenuTwoTone';
-import {MenuSideBar} from "./MenuSideBar.js";
 import {UseForm} from "./UseForm.js";
+import {EditMenu} from "./FormCreationMenu.js";
 
 const sideBarButtonStyle = {
   height: 'auto',
@@ -65,43 +65,8 @@ class App extends Component {
             Learn React
           </a>
         </header> */}
-        <Popup trigger={<button className="button"> Open Modal </button>} modal lockScroll = {true}>
-          {close => (
-            <div className="modal">
-              <a className="close" onClick={close}>
-                &times;
-              </a>
-              <div className="header"> Modal Title </div>
-              <div className="content">
-                {' '}
-                Sample Text
-              </div>
-              <div className="actions">
-                <Popup
-                  trigger={<button className="button"> Trigger </button>}
-                  position="top center"
-                  closeOnDocumentClick
-                >
-                  <div className="menu">
-                    <div className="menu-item"> Menu item 1</div>
-                    <div className="menu-item"> Menu item 2</div>
-                    <div className="menu-item"> Menu item 3</div>
-                    <div className="menu-item"> Menu item 4</div>
-                  </div>
-                </Popup>
-                <button
-                  className="button"
-                  onClick={() => {
-                    close()
-                  }}
-                >
-                  close modal
-                </button>
-              </div>
-            </div>
-          )}
-        </Popup>
       </div>
+        
     );
   }
 }
