@@ -53,13 +53,13 @@ class NavList extends Component {
     return (
       <div className="NavList">
         <List component="nav">
-          <ListItem button onClick={this.props.onCreateFormClicked}>
+          <ListItem button onClick={()=>this.props.onNavItemClicked("createForm")}>
             <ListItemIcon>
               <FormCreationIcon />
             </ListItemIcon>
             <ListItemText primary="Create Form" />
           </ListItem>
-          <ListItem button onClick={this.props.onViewFormClicked}>
+          <ListItem button onClick={()=>this.props.onNavItemClicked("viewForm")}>
             <ListItemIcon>
               <ViewFormIcon />
             </ListItemIcon>
@@ -68,19 +68,19 @@ class NavList extends Component {
         </List>
         <Divider />
         <List component="nav">
-          <ListItem button onClick={this.props.onSettingsClicked}>
+          <ListItem button onClick={()=>this.props.onNavItemClicked("settings")}>
             <ListItemIcon>
               <SettingsIcon />
             </ListItemIcon>
             <ListItemText primary="Settings" />
           </ListItem>
-          <ListItem button>
+          <ListItem button onClick={()=>this.props.onNavItemClicked("profile")}>
             <ListItemIcon>
               <ProfileIcon />
             </ListItemIcon>
             <ListItemText primary="Profile" />
           </ListItem>
-          <ListItem button>
+          <ListItem button onClick={()=>this.props.onNavItemClicked("manageAccess")}>
           <ListItemIcon>
             <ManageAccessIcon />
           </ListItemIcon>
@@ -89,12 +89,12 @@ class NavList extends Component {
         </List>
         <Divider />
         <List>
-          <ListItemLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+          <ListItem button component="a" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
             <ListItemIcon>
               <MagicButtonIcon />
               </ListItemIcon>
             <ListItemText primary="Magic Button" />
-          </ListItemLink>
+          </ListItem>
         </List>
       </div>
     );

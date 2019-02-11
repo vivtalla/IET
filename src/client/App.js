@@ -6,6 +6,7 @@ import MenuIcon from '@material-ui/icons/MenuTwoTone';
 import {MenuSideBar} from "./MenuSideBar.js";
 import {UseForm} from "./UseForm.js";
 const showAlerts = false;
+const system_loggedIn = true;
 const sideBarButtonStyle = {
   height: 'auto',
   width:  'auto',
@@ -27,39 +28,20 @@ class App extends Component {
     super(props);
     this.state = {
       sidebarOpen: true,
-      page: ""
+      page: "",
+      loggedIn: system_loggedIn
     };
     this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
     this.onCallApi = this.onCallApi.bind(this);
-    this.onSettingsClicked = this.onSettingsClicked.bind(this);
-    this.onCreateFormClicked = this.onCreateFormClicked.bind(this);
-    this.onViewFormClicked = this.onViewFormClicked.bind(this);
+    this.onNavItemClicked = this.onNavItemClicked.bind(this);
   }
 
-  onSettingsClicked(){
+  onNavItemClicked(page){
     if(showAlerts){
-    alert("onSettingsClicked");
+    alert("Nav Item Clicked");
     }
     this.setState({
-      page: "settings"
-    });
-  }
-
-  onCreateFormClicked(){
-    if(showAlerts){
-    alert("onCreateFormClicked");
-    }
-    this.setState({
-      page: "createForm"
-    });
-  }
-
-  onViewFormClicked(){
-    if(showAlerts){
-    alert("onViewFormClicked");
-    }
-    this.setState({
-      page: "viewForm"
+      page: page
     });
   }
 
@@ -79,10 +61,7 @@ class App extends Component {
       <div className="App">
       <div style = {sideMenuStyle}>
         <Sidebar
-          sidebar={<MenuSideBar onSettingsClicked={this.onSettingsClicked}
-                                onCreateFormClicked={this.onCreateFormClicked}
-                                onViewFormClicked={this.onViewFormClicked}
-                                />}
+          sidebar={<MenuSideBar onNavItemClicked={this.onNavItemClicked}/>}
           open={this.state.sidebarOpen}
           onSetOpen={this.onSetSidebarOpen}
           styles={{ sidebar: { background: "white", width: "300px" } }}
@@ -95,9 +74,13 @@ class App extends Component {
             <MenuIcon />
           </button>
           <div>
-          {this.state.page == "settings" ? <Settings /> : null}
-          {this.state.page == "createForm" ? <UseForm /> : null}
-          {this.state.page == "viewForm" ? <p>View Form</p> : null}
+          {this.state.loggedIn == false ? <p>Log In Page Goes Here</p> :
+          this.state.page == "settings" ? <Settings /> :
+          this.state.page == "createForm" ? <UseForm /> :
+          this.state.page == "viewForm" ? <p>View Form Page Goes Here</p> :
+          this.state.page == "profile" ? <p>Profile Page Goes Here</p> :
+          this.state.page == "manageAccess" ? <p>Manage Access Page Goes Here</p> :
+          this.state.page == "" ? <p>Welcome Page Goes Here</p> : null}
           </div>
           //end main page
         </Sidebar>
