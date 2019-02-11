@@ -1,5 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import './App.css';
+import Sidebar from "react-sidebar";
+import MenuIcon from '@material-ui/icons/MenuTwoTone';
+import Settings from "./Settings.js"
+import {MenuSideBar} from "./MenuSideBar.js";
+import {UseForm} from "./UseForm.js";
+
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -19,72 +25,80 @@ import ProfileIcon from '@material-ui/icons/Portrait';
 import MagicButtonIcon from '@material-ui/icons/ThumbUp';
 ///////
 
-const styles = theme => ({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-});
 
-function ListItemLink(props) {
-  return <ListItem button component="a" {...props} />;
-}
-
-function NavList(props) {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <List component="nav">
-        <ListItem button>
-          <ListItemIcon>
-            <FormCreationIcon />
-          </ListItemIcon>
-          <ListItemText primary="Create Form" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <ViewFormIcon />
-          </ListItemIcon>
-          <ListItemText primary="View Form" />
-        </ListItem>
-      </List>
-      <Divider />
-      <List component="nav">
-        <ListItem button>
-          <ListItemIcon>
-            <SettingsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Settings" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <ProfileIcon />
-          </ListItemIcon>
-          <ListItemText primary="Profile" />
-        </ListItem>
-        <ListItem button>
-        <ListItemIcon>
-          <ManageAccessIcon />
-        </ListItemIcon>
-          <ListItemText primary="Manage Access" />
-        </ListItem>
-      </List>
-      <Divider />
-      <List>
-        <ListItemLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-          <ListItemIcon>
-            <MagicButtonIcon />
-            </ListItemIcon>
-          <ListItemText primary="Magic Button" />
-        </ListItemLink>
-      </List>
-    </div>
-  );
-}
-
-NavList.propTypes = {
-  classes: PropTypes.object.isRequired,
+const sideBarButtonStyle = {
+  height: 'auto',
+  width:  'auto',
+  float:  'left',
 };
 
-export default withStyles(styles)(NavList);
+class ListItemLink extends Component {
+  constructor(props){
+    super(props);
+
+  }
+  render(props){
+    return <ListItem button component="a" {...props} />;
+  }
+
+};
+
+class NavList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    return (
+      <div className="NavList">
+        <List component="nav">
+          <ListItem button onClick={this.props.onCreateFormClicked}>
+            <ListItemIcon>
+              <FormCreationIcon />
+            </ListItemIcon>
+            <ListItemText primary="Create Form" />
+          </ListItem>
+          <ListItem button onClick={this.props.onViewFormClicked}>
+            <ListItemIcon>
+              <ViewFormIcon />
+            </ListItemIcon>
+            <ListItemText primary="View Form" />
+          </ListItem>
+        </List>
+        <Divider />
+        <List component="nav">
+          <ListItem button onClick={this.props.onSettingsClicked}>
+            <ListItemIcon>
+              <SettingsIcon />
+            </ListItemIcon>
+            <ListItemText primary="Settings" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <ProfileIcon />
+            </ListItemIcon>
+            <ListItemText primary="Profile" />
+          </ListItem>
+          <ListItem button>
+          <ListItemIcon>
+            <ManageAccessIcon />
+          </ListItemIcon>
+            <ListItemText primary="Manage Access" />
+          </ListItem>
+        </List>
+        <Divider />
+        <List>
+          <ListItemLink href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+            <ListItemIcon>
+              <MagicButtonIcon />
+              </ListItemIcon>
+            <ListItemText primary="Magic Button" />
+          </ListItemLink>
+        </List>
+      </div>
+    );
+  }
+}
+
+export default NavList;

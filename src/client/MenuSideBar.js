@@ -25,7 +25,9 @@ export class MenuSideBar extends Component {
     render() {
         return(
             <div>
-                <NavList />
+                <NavList onSettingsClicked={this.props.onSettingsClicked}
+                         onCreateFormClicked={this.props.onCreateFormClicked}
+                         onViewFormClicked={this.props.onViewFormClicked}/>
             </div>
         );
     }
