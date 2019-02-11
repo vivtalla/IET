@@ -25,7 +25,7 @@ export class MenuSideBar extends Component {
     render() {
         return(
             <div>
-                <NavList />
+                <NavList onNavItemClicked={this.props.onNavItemClicked}/>
             </div>
         );
     }
