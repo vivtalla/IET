@@ -55,7 +55,7 @@ export class MenuSideBar extends Component {
     }
 
     onHomeButtonPressed(){
-
+      this.props.onNavItemClicked("home");
     }
 
     getFormData(id) {
@@ -69,7 +69,7 @@ export class MenuSideBar extends Component {
             <div>
               <div style={{display: 'inlineBlock'}}>
                 <button class='menuButton' style={{width: '50%'}} onClick={this.onBackButtonPressed}><BackArrowIcon /></button>
-                <button class='menuButton' style={{width: '50%'}} onClick={this.onBackButtonPressed}><HomeIcon /></button>
+                <button class='menuButton' style={{width: '50%'}} onClick={()=>this.props.onNavItemClicked("home")}><HomeIcon /></button>
               </div>
 
               {this.state.showing == "" ? <NavList onNavItemClicked={this.props.onNavItemClicked}/> :
