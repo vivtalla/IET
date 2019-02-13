@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Sidebar from "react-sidebar";
 import Settings from "./Settings.js";
+import Login from "./Login.js";
 import MenuIcon from '@material-ui/icons/MenuTwoTone';
 import {MenuSideBar} from "./MenuSideBar.js";
 import {UseForm} from "./UseForm.js";
@@ -29,11 +30,19 @@ class App extends Component {
     this.state = {
       sidebarOpen: true,
       page: "home",
-      loggedIn: system_loggedIn
+      sidebarDisplay: "home",
+      loggedIn: false
     };
     this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
     this.onCallApi = this.onCallApi.bind(this);
     this.onNavItemClicked = this.onNavItemClicked.bind(this);
+    this.onLoginAuthentication = this.onLoginAuthentication.bind(this);
+  }
+
+  onLoginAuthentication(loggedIn){
+    if(loggedIn){
+      this.setState({loggedIn: true});
+    }
   }
 
   onNavItemClicked(page){
@@ -41,7 +50,8 @@ class App extends Component {
     alert("Nav Item Clicked");
     }
     this.setState({
-      page: page
+      page: page,
+      sidebarDisplay: page
     });
   }
 
@@ -61,20 +71,22 @@ class App extends Component {
       <div className="App">
       <div style = {sideMenuStyle}>
         <Sidebar
+          shadow={true}
+          transitions={true}
           sidebar={<MenuSideBar showing={this.state.page} onNavItemClicked={this.onNavItemClicked}/>}
           open={this.state.sidebarOpen}
           onSetOpen={this.onSetSidebarOpen}
           styles={{ sidebar: { background: "white", width: '20%' } }}
         >
-
-          <div style={{width: '100%', height: '100%'}}>
+          <div style={{backgroundColor: 'grey'}}>
           <button
             onClick={() => this.onSetSidebarOpen(true)}
             style={sideBarButtonStyle}
           >
             <MenuIcon />
           </button>
-          {this.state.loggedIn == false ? <p>Log In Page Goes Here</p> :
+
+          {this.state.loggedIn == false ? <Login onLoginAuth={this.onLoginAuthentication}/> :
           this.state.page == "settings" ? <Settings /> :
           this.state.page == "createForm" ? <UseForm /> :
           this.state.page == "profile" ? <p>Profile Page Goes Here</p> :
@@ -82,11 +94,11 @@ class App extends Component {
           this.state.page == "home" ? <p>Home Page Goes Here</p> : null}
           </div>
         </Sidebar>
-        </div>
+
         <header className="App-header">
 
         </header>
-
+        </div>
       </div>
     );
   }

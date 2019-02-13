@@ -34,7 +34,7 @@ export class MenuSideBar extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        if(nextProps.showing != this.props.showing){
+        if(nextProps.sidebarDisplay != this.props.showing){
             this.setState({goBackTo: this.state.showing, showing: nextProps.showing});
         }
     }
@@ -48,9 +48,10 @@ export class MenuSideBar extends Component {
 
     onBackButtonPressed(){
       //alert("Back Button");
+      let temp = this.state.showing;
       this.setState({
         showing: this.state.goBackTo,
-        goBackTo: ""
+        goBackTo: temp
       });
     }
 
