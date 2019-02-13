@@ -5,6 +5,11 @@ import React, { Component } from 'react';
 //import {MenuSideBar} from "./MenuSideBar.js";
 //import {UseForm} from "./UseForm.js";
 const showAlerts = true;
+const settingsStyle = {
+  backgroundColor: 'purple',
+  width: "100%",
+  height: '500px'
+};
 class Settings extends Component {
   constructor(props) {
     super(props);
@@ -20,8 +25,16 @@ class Settings extends Component {
 
   render() {
     return (
-      <div className="Settings">
-        Settings Page
+      <div style={settingsStyle} className="Settings">
+        <div style={{width: '32%', height: '100%', backgroundColor: 'purple', float: 'left'}}>
+        Pane 1
+        </div>
+        <div style={{width: '32%', height: '100%', backgroundColor: 'grey', float: 'left'}}>
+        Pane 2
+        </div>
+        <div style={{width: '32%', height: '100%', backgroundColor: 'purple', float: 'left'}}>
+        Pane 3
+        </div>
       </div>
     );
   }

@@ -21,6 +21,7 @@ import FormCreationIcon from '@material-ui/icons/Note';
 import ViewFormIcon from '@material-ui/icons/Search';
 import ManageAccessIcon from '@material-ui/icons/People';
 import ProfileIcon from '@material-ui/icons/Portrait';
+import HomeIcon from '@material-ui/icons/Home';
 ///////
 import MagicButtonIcon from '@material-ui/icons/ThumbUp';
 ///////
@@ -53,17 +54,17 @@ class NavList extends Component {
     return (
       <div className="NavList">
         <List component="nav">
+        <ListItem button onClick={()=>this.props.onNavItemClicked("home")}>
+          <ListItemIcon>
+            <HomeIcon />
+          </ListItemIcon>
+          <ListItemText primary="Home" />
+        </ListItem>
           <ListItem button onClick={()=>this.props.onNavItemClicked("createForm")}>
             <ListItemIcon>
               <FormCreationIcon />
             </ListItemIcon>
             <ListItemText primary="Create Form" />
-          </ListItem>
-          <ListItem button onClick={()=>this.props.onNavItemClicked("viewForm")}>
-            <ListItemIcon>
-              <ViewFormIcon />
-            </ListItemIcon>
-            <ListItemText primary="View Form" />
           </ListItem>
         </List>
         <Divider />

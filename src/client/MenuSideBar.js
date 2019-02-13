@@ -5,8 +5,10 @@ import ToolList from "./ToolList.js";
 import NavList from "./NavList.js";
 import BackArrowIcon from '@material-ui/icons/ArrowBack';
 import Divider from '@material-ui/core/Divider';
+import HomeIcon from '@material-ui/icons/Home';
 //import {SimpleList} from "./SimpleList.js";
 import api from "./api.js";
+import './App.css';
 
 const sideBarBackButtonStyle = {
   height: 'auto',
@@ -14,7 +16,7 @@ const sideBarBackButtonStyle = {
   display: 'block'
 };
 const divStyle = {
-  display: "block"
+  float: 'left'
 };
 
 export class MenuSideBar extends Component {
@@ -23,11 +25,12 @@ export class MenuSideBar extends Component {
         this.state = {
           data: [],
           goBackTo: "",
-          showing: "welcome"
+          showing: "home"
         };
         this.getFormData = this.getFormData.bind(this);
         this.setShowing = this.setShowing.bind(this);
         this.onBackButtonPressed = this.onBackButtonPressed.bind(this);
+        this.onHomebuttonPressed = this.onHomeButtonPressed.bind(this);
     }
 
     componentWillReceiveProps(nextProps){
@@ -51,6 +54,10 @@ export class MenuSideBar extends Component {
       });
     }
 
+    onHomeButtonPressed(){
+      this.props.onNavItemClicked("home");
+    }
+
     getFormData(id) {
       api.gets('form').getForm(id)
         .then(res => this.setState({data: res.Tasks}))
@@ -59,15 +66,15 @@ export class MenuSideBar extends Component {
 
     render() {
         return(
-            <div style={divStyle}>
-              <div>
-                <button onClick={this.onBackButtonPressed}
-                    style={sideBarBackButtonStyle}><BackArrowIcon /></button>
+            <div>
+              <div style={{display: 'inlineBlock'}}>
+                <button class='menuButton' style={{width: '50%'}} onClick={this.onBackButtonPressed}><BackArrowIcon /></button>
+                <button class='menuButton' style={{width: '50%'}} onClick={()=>this.props.onNavItemClicked("home")}><HomeIcon /></button>
               </div>
 
               {this.state.showing == "" ? <NavList onNavItemClicked={this.props.onNavItemClicked}/> :
               this.state.showing == "nav" ? <NavList onNavItemClicked={this.props.onNavItemClicked}/> :
-              this.state.showing == "welcome" ? <NavList onNavItemClicked={this.props.onNavItemClicked}/> :
+              this.state.showing == "home" ? <NavList onNavItemClicked={this.props.onNavItemClicked}/> :
               this.state.showing == "createForm" ? <ToolList/> :
               this.state.page == "viewForm" ? <p>View Form Page Goes Here</p> :
               this.state.page == "profile" ? <p>Profile Page Goes Here</p> :
