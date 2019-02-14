@@ -28,7 +28,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sidebarOpen: true,
+      sidebarOpen: false,
       page: "home",
       sidebarDisplay: "home",
       loggedIn: false
@@ -41,7 +41,7 @@ class App extends Component {
 
   onLoginAuthentication(loggedIn){
     if(loggedIn){
-      this.setState({loggedIn: true});
+      this.setState({loggedIn: true, sidebarOpen: true});
     }
   }
 
