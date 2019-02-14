@@ -12,14 +12,15 @@ import './Login.css'
 var cssHSL = "hsl(" + 360 * Math.random() + ',' +
                  (25 + 70 * Math.random()) + '%,' +
                  (85 + 10 * Math.random()) + '%)';
+var cssHSL2 = "hsl(" + 360 * Math.random() + ',' +
+                  (25 + 70 * Math.random()) + '%,' +
+                  (85 + 10 * Math.random()) + '%)';
 
 const loginCSS = {
   backgroundColor: cssHSL,
-  width: '100%',
-  height: '100%',
-  color: 'black',
-
-  verticalAlign: 'left'
+};
+const loginCSS2 = {
+  backgroundColor: cssHSL2,
 };
 
  class Login extends React.Component {
@@ -30,46 +31,58 @@ const loginCSS = {
       pass: ''
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeUser = this.handleChangeUser.bind(this);
+    this.handleChangePass = this.handleChangePass.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(username, password) {
-    this.setState({user: username, pass: password});
+  handleChangeUser(event) {
+    this.setState({user: event.target.value});
+  }
+
+  handleChangePass(event) {
+    this.setState({pass: event.target.value});
   }
 
   handleSubmit(event) {
-    alert('User: ' + this.state.user + ' Pass: ' + this.state.pass);
+    //alert('A name was submitted: ' + this.state.user);
     event.preventDefault();
-    //check login
     this.props.onLoginAuth(true);
   }
 
   render() {
     return (
-
-          <div>
-          <Form>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
-            </Form.Group>
-
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
-            </Form.Group>
-            <Form.Group controlId="formBasicChecbox">
-              <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
-          </Form>
-
+      <div class="outer" style={loginCSS}>
+        <div class = "middle">
+          <div class = "inner">
+            <div>
+            <form style={{color: 'black', textAlign: 'left'}} onSubmit={this.handleSubmit}>
+            <table>
+              <tr>
+                <td>User:</td>
+                <td>
+                  <label>
+                    <input type="text" value={this.state.user} onChange={this.handleChangeUser} />
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td>Password:</td>
+                <td>
+                  <label>
+                    <input type="password" value={this.state.pass} onChange={this.handleChangePass} />
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><input type="submit" value="Submit" /></td>
+              </tr>
+            </table>
+            </form>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
